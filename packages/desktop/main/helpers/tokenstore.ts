@@ -3,7 +3,13 @@ import Store from 'electron-store'
 
 export default class AuthTokenStore extends TokenStore {
 
-    private _store = new Store()
+    private _store:Store
+
+    // Share the application store: separate instances cache the file and overwrite each other's writes
+    constructor(store:Store){
+        super()
+        this._store = store
+    }
 
     load() {
         const tokens = this._store.get('user.tokenstore', '{}') as string

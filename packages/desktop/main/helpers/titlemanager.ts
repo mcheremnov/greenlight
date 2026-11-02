@@ -26,7 +26,7 @@ interface FilterArgs {
 export default class TitleManager {
 
     _application:Application
-    _store = new Store()
+    _store:Store
     _http:HTTP
 
     _xCloudTitles = {}
@@ -38,6 +38,8 @@ export default class TitleManager {
     
     constructor(application){
         this._application = application
+        // Share the application store: separate instances cache the file and overwrite each other's writes
+        this._store = application._store
         this._http = new HTTP(this._application)
     }
 
