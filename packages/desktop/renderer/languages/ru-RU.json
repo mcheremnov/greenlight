@@ -49,6 +49,15 @@
         "websiteLinkTitle": "Открыть ссылку во внешнем браузере"
       },
 
+      "accounts": {
+        "title": "Аккаунты",
+        "active": "Активный",
+        "switch": "Переключить",
+        "remove": "Удалить",
+        "add": "Добавить аккаунт",
+        "removeQuestion": "Удалить {{gamertag}} из Greenlight?"
+      },
+
       "input": {
         "pageTitle": "Настройки: Ввод",
         "dPadUp": "Крестовина вверх",

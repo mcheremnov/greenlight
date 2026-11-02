@@ -6,6 +6,10 @@ interface setForceRegionIpArgs {
     ip:string;
 }
 
+interface accountArgs {
+    xuid:string;
+}
+
 interface setPreferredGameLanguageArgs {
     language:string;
 }
@@ -53,6 +57,48 @@ export default class IpcApp extends IpcBase {
         })
     }
 
+    getAccounts(){
+        return new Promise((resolve) => {
+            const accounts = this._application._authentication.getAccounts()
+            const active = this._application._authentication.getActiveAccount()
+
+            resolve(Object.values(accounts).map((account:any) => ({
+                xuid: account.xuid,
+                gamertag: account.gamertag,
+                gamerpic: account.gamerpic,
+                gamerscore: account.gamerscore,
+                active: account.xuid === active,
+            })))
+        })
+    }
+
+    switchAccount(args:accountArgs){
+        return new Promise<boolean>((resolve) => {
+            resolve(true)
+            setTimeout(() => {
+                this._application._authentication.switchAccount(args.xuid)
+            }, 100)
+        })
+    }
+
+    addAccount(){
+        return new Promise<boolean>((resolve) => {
+            resolve(true)
+            setTimeout(() => {
+                this._application._authentication.addAccount()
+            }, 100)
+        })
+    }
+
+    removeAccount(args:accountArgs){
+        return new Promise<boolean>((resolve) => {
+            resolve(true)
+            setTimeout(() => {
+                this._application._authentication.removeAccount(args.xuid)
+            }, 100)
+        })
+    }
+
     quit(){
         return new Promise<boolean>((resolve) => {
             resolve(true)
@@ -77,6 +123,7 @@ export default class IpcApp extends IpcBase {
                 this._application._authentication._tokenStore.clear()
                 this._application._store.delete('user')
                 this._application._store.delete('auth')
+                this._application._store.delete('accounts')
 
                 this._application.log('authentication', __filename+'[startIpcEvents()] Received restart request. Restarting application...')
                 this._application.restart()

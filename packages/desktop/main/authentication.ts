@@ -182,6 +182,79 @@ export default class Authentication {
         })
     }
 
+    getAccounts(){
+        return this._application._store.get('accounts.list', {}) as Record<string, any>
+    }
+
+    getActiveAccount(){
+        return this._application._store.get('accounts.active', '') as string
+    }
+
+    // Snapshot the signed in user (tokens + cached profile) into the accounts list
+    saveActiveAccount(xuid?:string){
+        const store = this._application._store
+        if(xuid === undefined)
+            xuid = this.getActiveAccount()
+
+        if(! xuid || store.get('user.tokenstore') === undefined)
+            return
+
+        store.set('accounts.list.'+xuid, {
+            xuid: xuid,
+            gamertag: store.get('user.gamertag', ''),
+            gamerpic: store.get('user.gamerpic', ''),
+            gamerscore: store.get('user.gamerscore', ''),
+            tokenstore: store.get('user.tokenstore'),
+        })
+        store.set('accounts.active', xuid)
+    }
+
+    switchAccount(xuid:string){
+        const account = this.getAccounts()[xuid]
+        if(account === undefined)
+            throw new Error('Account not found: '+xuid)
+
+        this.saveActiveAccount()
+
+        const store = this._application._store
+        store.delete('user')
+        store.set('user.tokenstore', account.tokenstore)
+        store.set('user.gamertag', account.gamertag)
+        store.set('user.gamerpic', account.gamerpic)
+        store.set('user.gamerscore', account.gamerscore)
+        store.set('accounts.active', xuid)
+
+        this._application.restart()
+    }
+
+    addAccount(){
+        this.saveActiveAccount()
+
+        // Without tokens the app starts the sign in flow after restart
+        this._application._store.delete('user')
+        this._application._store.set('accounts.active', '')
+        this._application.restart()
+    }
+
+    removeAccount(xuid:string){
+        const store = this._application._store
+        const isActive = (xuid === this.getActiveAccount())
+        store.delete('accounts.list.'+xuid as any)
+
+        if(! isActive)
+            return
+
+        store.delete('user')
+        store.set('accounts.active', '')
+
+        const remaining = Object.keys(this.getAccounts())
+        if(remaining.length > 0){
+            this.switchAccount(remaining[0])
+        } else {
+            this._application.restart()
+        }
+    }
+
     openAuthWindow(url){
         const authWindow = createWindow('auth', {
             width: 500,

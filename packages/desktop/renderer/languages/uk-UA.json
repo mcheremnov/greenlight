@@ -49,6 +49,15 @@
         "websiteLinkTitle": "Відкрити посилання у зовнішньому браузері"
       },
 
+      "accounts": {
+        "title": "Облікові записи",
+        "active": "Активний",
+        "switch": "Перемкнути",
+        "remove": "Видалити",
+        "add": "Додати обліковий запис",
+        "removeQuestion": "Видалити {{gamertag}} з Greenlight?"
+      },
+
       "input": {
         "pageTitle": "Налаштування: Ввід",
         "dPadUp": "Хрестовина вгору",

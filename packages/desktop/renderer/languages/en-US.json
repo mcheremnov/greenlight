@@ -49,6 +49,15 @@
         "websiteLinkTitle": "Open link in external browser"
       },
 
+      "accounts": {
+        "title": "Accounts",
+        "active": "Active",
+        "switch": "Switch",
+        "remove": "Remove",
+        "add": "Add account",
+        "removeQuestion": "Remove {{gamertag}} from Greenlight?"
+      },
+
       "input": {
         "settingsInputPageTitle": "Settings: Input",
         "dPadUp": "DPad Up",
