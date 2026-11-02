@@ -1,4 +1,4 @@
-import { session, dialog } from 'electron'
+import { session, dialog, shell, clipboard } from 'electron'
 import { createWindow } from './helpers'
 import Application from './application'
 import { Msal } from 'xal-node'
@@ -14,6 +14,7 @@ export default class Authentication {
 
     _authWindow
     _authCallback
+    _deviceCodeDialog:AbortController
 
     _isAuthenticating:boolean = false
     _isAuthenticated:boolean = false
@@ -122,19 +123,18 @@ export default class Authentication {
         this._msal.doDeviceCodeAuth().then((data) => {
             this._application.log('authenticationV2', '[startAuthflow()] Starting devicecode auth:', data)
 
-            dialog.showMessageBox({
-                message: data.message+' Click OK to continue after entering code.',
-                type: 'info',
-            })
+            this.openDeviceCodeLink(data.verification_uri, data.user_code)
 
             this._isAuthenticating = true
 
             this._msal.doPollForDeviceCodeAuth(data.device_code).then((token) => {
                 this._application.log('authenticationV2', '[startAuthflow()] Devicecode authentication successful:', token)
 
+                this._deviceCodeDialog?.abort()
                 this.getTokens()
 
             }).catch((error) => {
+                this._deviceCodeDialog?.abort()
                 this._application.log('authenticationV2', '[startAuthflow()] Error during devicecode polling auth:', error)
                 dialog.showErrorBox('Error', 'Failed to perform MSAL authentixation: ' + JSON.stringify(error))
 
@@ -144,6 +144,41 @@ export default class Authentication {
         }).catch((error) => {
             this._application.log('authenticationV2', '[startAuthflow()] Error during devicecode auth:', error)
             dialog.showErrorBox('Error', this.t('errors.errorAuthentificationUser') + ' ' + JSON.stringify(error))
+        })
+    }
+
+    openDeviceCodeLink(verificationUri:string, userCode:string){
+        // otc prefills the code on microsoft.com/link so the user only has to confirm
+        const url = verificationUri + '?otc=' + encodeURIComponent(userCode)
+
+        clipboard.writeText(userCode)
+        shell.openExternal(url)
+
+        this._deviceCodeDialog = new AbortController()
+        this.showDeviceCodeDialog(url, verificationUri, userCode)
+    }
+
+    showDeviceCodeDialog(url:string, verificationUri:string, userCode:string){
+        dialog.showMessageBox({
+            type: 'info',
+            title: 'Sign in with Microsoft',
+            message: 'Sign in with your browser',
+            detail: 'A browser window has opened. If it did not, go to ' + verificationUri + ' and enter this code:\n\n' + userCode + '\n\nThe code has been copied to your clipboard. Greenlight will continue automatically after you sign in.',
+            buttons: ['OK', 'Open browser', 'Copy code'],
+            defaultId: 0,
+            cancelId: 0,
+            signal: this._deviceCodeDialog.signal,
+        }).then(({ response }) => {
+            if(response === 0 || this._deviceCodeDialog.signal.aborted)
+                return
+
+            if(response === 1){
+                shell.openExternal(url)
+            } else {
+                clipboard.writeText(userCode)
+            }
+            // Keep the code visible until the user dismisses it
+            this.showDeviceCodeDialog(url, verificationUri, userCode)
         })
     }
 
