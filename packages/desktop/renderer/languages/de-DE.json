@@ -145,6 +145,10 @@
         "forceLowResDescription": "(Diese Einstellung ist auf dem Steam Deck hilfreich und erlaubt der Anwendung, in einer niedrigen Auflösung dargestellt und mittels FSR skaliert zu werden.)",
         "audioTitle": "Audio",
         "disableAudioLabel": "Audio deaktivieren",
+        "outputDeviceLabel": "Audioausgabegerät",
+        "inputDeviceLabel": "Mikrofon",
+        "defaultDeviceLabel": "Systemstandard",
+        "unnamedDeviceLabel": "Gerät",
         "videoTitle": "videoTitle"
       },
       "webUI": {
@@ -233,6 +237,7 @@
       "micActive": "Aktiv",
       "enableMic": "Aktiviere Mikro",
       "disableMic": "Deaktiviere Mikro",
+      "audioDevicesTitle": "Audiogeräte",
       "debugTitle": "Fehlersuche",
       "itsTakingALittleLonger": "Es dauert noch einen Moment.. Dein Stream startet bald.",
       "startingConnection": "Verbindungsaufbau...",

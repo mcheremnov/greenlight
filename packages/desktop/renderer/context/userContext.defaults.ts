@@ -39,6 +39,9 @@ export const defaultSettings = {
 
     video_enabled: true,
     audio_enabled: true,
+    // Device ids from navigator.mediaDevices. '' means system default.
+    audio_input_device: '',
+    audio_output_device: '',
 
     // WebUI
     webui_autostart: false,

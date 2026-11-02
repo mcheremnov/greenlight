@@ -94,6 +94,65 @@ div#component_streamcomponent_gamebar div#component_streamcomponent_gamebar_menu
     gap: 20px;
 }
 
+div#component_streamcomponent_audiodevices {
+    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 0 0 8px 8px;
+
+    /* Two columns so labels and selects line up regardless of label length */
+    display: grid;
+    grid-template-columns: auto 320px;
+    align-items: center;
+    gap: 10px;
+}
+
+div#component_streamcomponent_audiodevices p {
+    display: contents;
+}
+
+/* Match the .btn style used by the gamebar buttons */
+div#component_streamcomponent_audiodevices select {
+    width: 100%;
+    padding: 0.7rem 2.2rem 0.7rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #444444;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M0 0l5 6 5-6z' fill='%23ffffff'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    border: 2px solid #444444;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-overflow: ellipsis;
+
+    transition: background-color 0.1s ease;
+}
+
+div#component_streamcomponent_audiodevices select:hover {
+    background-color: #6f6f6f;
+}
+
+div#component_streamcomponent_audiodevices select:focus {
+    outline: none;
+    border-color: #005e31;
+}
+
+div#component_streamcomponent_audiodevices select option {
+    background-color: #444444;
+    color: #ffffff;
+    text-transform: none;
+    font-weight: normal;
+}
+
 div#component_streamcomponent_loader {
     display: flex;
     align-items: center;

@@ -150,7 +150,11 @@
         "forceLowResLabel": "Примусово низька роздільна здатність відео",
         "forceLowResDescription": "(Ця опція корисна на Steam Deck і дозволяє додатку працювати у низькій роздільній здатності, щоб можна було увімкнути FSR.)",
         "audioTitle": "Аудіо",
-        "disableAudioLabel": "Вимкнути аудіо"
+        "disableAudioLabel": "Вимкнути аудіо",
+        "outputDeviceLabel": "Пристрій виведення звуку",
+        "inputDeviceLabel": "Мікрофон",
+        "defaultDeviceLabel": "Системний за замовчуванням",
+        "unnamedDeviceLabel": "Пристрій"
       },
 
       "webUI": {
@@ -248,6 +252,7 @@
       "micActive": "Увімкнено",
       "enableMic": "Увімкнути мікрофон",
       "disableMic": "Вимкнути мікрофон",
+      "audioDevicesTitle": "Аудіопристрої",
       "debugTitle": "Відлагодження",
       "itsTakingALittleLonger": "Це займає трохи більше часу.. Ваша трансляція може скоро початися.",
       "startingConnection": "Початок підключення...",
