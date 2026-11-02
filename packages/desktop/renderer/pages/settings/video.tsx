@@ -2,7 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 import SettingsSidebar from '../../components/settings/sidebar'
 import Card from '../../components/ui/card'
+import AudioDeviceSelect from '../../components/ui/audiodeviceselect'
 import Ipc from '../../lib/ipc'
+import { useAudioDevices } from '../../lib/audiodevices'
 import { useSettings } from '../../context/userContext'
 import { useTranslation } from 'react-i18next'
 
@@ -10,6 +12,7 @@ import { useTranslation } from 'react-i18next'
 function SettingsVideo() {
     const { settings, setSettings} = useSettings()
     const { t } = useTranslation()
+    const audioDevices = useAudioDevices()
 
     React.useEffect(() => {
     //
@@ -91,6 +94,26 @@ function SettingsVideo() {
                         <label style={{ minWidth: 0 }}>
                             <input type='checkbox' onChange={ setAudioEnabled } checked={!settings.audio_enabled} />&nbsp; ({ !settings.audio_enabled ? t('settings.videoAudio.enabledLabel') : t('settings.videoAudio.disabledLabel')})
                         </label>
+                    </p>
+
+                    <p>
+                        <label>{t('settings.videoAudio.outputDeviceLabel')}</label>
+                        <AudioDeviceSelect devices={audioDevices.outputs} value={settings.audio_output_device} onChange={(deviceId) => {
+                            setSettings({
+                                ...settings,
+                                audio_output_device: deviceId,
+                            })
+                        }} />
+                    </p>
+
+                    <p>
+                        <label>{t('settings.videoAudio.inputDeviceLabel')}</label>
+                        <AudioDeviceSelect devices={audioDevices.inputs} value={settings.audio_input_device} onChange={(deviceId) => {
+                            setSettings({
+                                ...settings,
+                                audio_input_device: deviceId,
+                            })
+                        }} />
                     </p>
                 </Card>
             </SettingsSidebar>

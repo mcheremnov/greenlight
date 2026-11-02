@@ -111,6 +111,12 @@ function Stream() {
                             xPlayer._audioComponent._audioRender.muted = true
                         }
 
+                        if(settings.audio_output_device !== ''){
+                            xPlayer._audioComponent._audioRender.setSinkId(settings.audio_output_device).catch((error) => {
+                                console.error('Failed to set output device, using system default:', error)
+                            })
+                        }
+
                         if(settings.video_enabled === false){
                             xPlayer._videoComponent._videoRender.style.opacity = 0
                         }
