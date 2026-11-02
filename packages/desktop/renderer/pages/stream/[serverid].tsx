@@ -136,6 +136,9 @@ function Stream() {
                         // Client has been disconnected. Lets return to home.
                         // xPlayer.close()
                         console.log('Client has been disconnected. Returning to prev page.')
+                        if(keepaliveInterval){
+                            clearInterval(keepaliveInterval)
+                        }
                         window.history.back()
                     }
                 }
@@ -229,7 +232,7 @@ function Stream() {
                 clearInterval(streamStateInterval)
             }
         }
-    })
+    }, [xPlayer, sessionId])
 
     function gamepadSend(button){
         console.log('Pressed button:', button)
@@ -237,11 +240,15 @@ function Stream() {
     }
 
     function onDisconnect(){
-        Ipc.send('streaming', 'stopStream', {
-            sessionId: sessionId,
-        }).then((result) => {
-            console.log('Stream stopped:', result)
-        })
+        if(sessionId !== ''){
+            Ipc.send('streaming', 'stopStream', {
+                sessionId: sessionId,
+            }).then((result) => {
+                console.log('Stream stopped:', result)
+            }).catch((error) => {
+                console.log('Failed to stop stream:', error)
+            })
+        }
 
         if(streamStateInterval){
             clearInterval(streamStateInterval)
