@@ -23,6 +23,16 @@ _DISCLAIMER: Greenlight is not affiliated with Microsoft, Xbox or Moonlight. All
 
 <img src="images/main.png" width="400" /> <img src="images/stream.png" width="400" />
 
+## Fork progress
+
+- [x] Sign in through the default browser with a prefilled code
+- [x] Support multiple accounts and switching between them
+- [x] Share one settings store so account changes stick
+- [x] End the stream session when the console disconnects (fixes the endless `Provisioning` loop on the next stream)
+
+> [!WARNING]
+> **Multi-account tokens are stored unencrypted.** The Xbox Live tokens of every signed-in account (user, SISU and streaming tokens) are saved as plain JSON in the app's `config.json` (`electron-store`, under `user.tokenstore` and `accounts.list`). Anyone who can read that file can use your Xbox accounts. Only use multiple accounts on a machine you trust, and sign out of accounts you no longer need.
+
 ## Install
 
 ### Install from Flathub:
