@@ -161,6 +161,11 @@ export default class StreamManager {
             this.getApi(this.getSession(sessionId).type).getStreamState(sessionId).then((result:any) => {
                 console.log('Streammanager - state:', result)
 
+                if(this.getSession(sessionId) === undefined){
+                    // Session was stopped while the state request was in flight
+                    return
+                }
+
                 this.getSession(sessionId).state = result.state
 
                 if(result.state === 'Provisioned'){
