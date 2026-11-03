@@ -23,6 +23,22 @@ _DISCLAIMER: Greenlight is not affiliated with Microsoft, Xbox or Moonlight. All
 
 <img src="images/main.png" width="400" /> <img src="images/stream.png" width="400" />
 
+## Code quality (SonarCloud)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mcheremnov_greenlight)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=mcheremnov_greenlight)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=mcheremnov_greenlight)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=mcheremnov_greenlight)
+
+| Metric | Value |
+|---|---|
+| Quality gate | Failed |
+| Lines of code | 14k |
+| Vulnerabilities | 16 |
+| Maintainability | A |
+
+See the [full report](https://sonarcloud.io/project/overview?id=mcheremnov_greenlight).
+
 ## Fork progress
 
 - [x] Sign in through the default browser with a prefilled code
