@@ -1,8 +1,4 @@
 # Greenlight
-
-[![Build/Desktop](https://github.com/unknownskl/greenlight/actions/workflows/build_desktop.yml/badge.svg)](https://github.com/unknownskl/greenlight/actions/workflows/build_desktop.yml)
-[![Build/Docs](https://github.com/unknownskl/greenlight/actions/workflows/build_docs.yml/badge.svg)](https://github.com/unknownskl/greenlight/actions/workflows/build_docs.yml)
-
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=alert_status)](https://sonarcloud.io/project/overview?id=mcheremnov_greenlight)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=ncloc)](https://sonarcloud.io/project/overview?id=mcheremnov_greenlight)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=vulnerabilities)](https://sonarcloud.io/project/overview?id=mcheremnov_greenlight)
