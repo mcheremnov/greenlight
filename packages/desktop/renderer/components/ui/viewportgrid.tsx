@@ -13,7 +13,7 @@ function ViewportGrid({
     maxHeight = -1,
     children,
 }: ViewportGridProps) {
-    const randomId = Math.floor(Math.random()*1000)
+    const randomId = React.useId()
     const [showItems, setShowItems] = React.useState(9999)
     const [page, setPage] = React.useState(0)
     const { t } = useTranslation()

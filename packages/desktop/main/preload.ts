@@ -1,11 +1,14 @@
 import { contextBridge, ipcRenderer, shell } from 'electron'
 import pkg from '../package.json'
 
+// Sequential ids: replies are matched by id, so they only need to be unique, not random
+let nextRequestId = 0
+
 export const Preload = {
 
     send(channel:string, action:string, data = {}){
         return new Promise((resolve, reject) => {
-            const requestId = Math.round(Math.random()*1000)
+            const requestId = ++nextRequestId
 
             ipcRenderer.send(channel, {
                 id: requestId,

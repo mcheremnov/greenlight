@@ -1,6 +1,7 @@
 import { app as ElectronApp, BrowserWindow, dialog } from 'electron'
 import serve from 'electron-serve'
 import Store from 'electron-store'
+import { randomUUID } from 'crypto'
 import Debug from 'debug'
 import { createWindow, xboxWorker, updater } from './helpers'
 import Authentication from './authentication'
@@ -106,7 +107,7 @@ export default class Application {
             serve({ directory: 'app' })
 
         } else if(this._isCi === true) {
-            const random = Math.random()*100
+            const random = randomUUID()
             ElectronApp.setPath('userData', `${ElectronApp.getPath('userData')} (${random})`)
             ElectronApp.setPath('sessionData', `${ElectronApp.getPath('userData')} (${random})`)
             this._store.delete('user')

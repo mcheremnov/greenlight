@@ -3,6 +3,7 @@ export default class WebsocketIPC {
 
     _on = {}
     _onAction = {}
+    _nextActionId = 0
 
     constructor(url){
         this._websocket = new WebSocket(url)
@@ -21,7 +22,7 @@ export default class WebsocketIPC {
                     })
                 }, 200)
             } else {
-                const actionId = Math.floor(Math.random() * 99999)
+                const actionId = ++this._nextActionId
 
                 this._websocket.send(JSON.stringify({
                     channel: channel,

@@ -48,7 +48,10 @@ export default {
     },
 
     websocketFallbackApi(){
-        const websocket = new WebsocketIPC('ws://'+window.location.hostname+':'+window.location.port+'/ipc')
+        // Use wss when the page is served over https
+        const url = new URL('/ipc', window.location.href)
+        url.protocol = url.protocol.replace('http', 'ws')
+        const websocket = new WebsocketIPC(url.toString())
 
         console.log('Injecting Greenlight Websocker IPC')
 
