@@ -49,6 +49,15 @@
         "websiteLinkTitle": "Otwórz link w zewnętrznej przeglądarce"
       },
 
+      "accounts": {
+        "title": "Konta",
+        "active": "Aktywne",
+        "switch": "Przełącz",
+        "remove": "Usuń",
+        "add": "Dodaj konto",
+        "removeQuestion": "Usunąć {{gamertag}} z Greenlight?"
+      },
+
       "input": {
         "settingsInputPageTitle": "Ustawienia: Wejścia",
         "dPadUp": "Pad kierunkowy Góra",

@@ -193,6 +193,8 @@ export default class Application {
                 }
             }
 
+            this._authentication.saveActiveAccount(webToken.data.DisplayClaims.xui[0].xid)
+
             // Run workers
             this._xboxWorker = new xboxWorker(this)
             this._ipc.onUserLoaded()

@@ -44,6 +44,15 @@
         "website": "Webseite",
         "websiteLinkTitle": "Öffne Link in externem Browser"
       },
+
+      "accounts": {
+        "title": "Konten",
+        "active": "Aktiv",
+        "switch": "Wechseln",
+        "remove": "Entfernen",
+        "add": "Konto hinzufügen",
+        "removeQuestion": "{{gamertag}} aus Greenlight entfernen?"
+      },
       "input": {
         "settingsInputPageTitle": "Einstellungen: Eingabe",
         "dPadUp": "D-Pad Hoch",

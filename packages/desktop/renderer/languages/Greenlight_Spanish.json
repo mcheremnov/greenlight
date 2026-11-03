@@ -44,6 +44,15 @@
         "website": "Sitio web",
         "websiteLinkTitle": "Abrir enlace en un navegador externo"
       },
+
+      "accounts": {
+        "title": "Cuentas",
+        "active": "Activa",
+        "switch": "Cambiar",
+        "remove": "Eliminar",
+        "add": "Añadir cuenta",
+        "removeQuestion": "¿Eliminar {{gamertag}} de Greenlight?"
+      },
       "input": {
         "settingsInputPageTitle": "Configuración: Controles",
         "dPadUp": "Cruceta Arriba",
