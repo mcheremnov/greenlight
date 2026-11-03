@@ -92,7 +92,7 @@ export default class Authentication {
 
             }).catch((error) => {
                 this._application.log('authenticationV2', __filename+'[getTokens()] Failed to retrieve web tokens:', error)
-                dialog.showMessageBox({
+                void dialog.showMessageBox({
                     message: this.t('errors.failedToRetrieveWebTokens') + ' ' + JSON.stringify(error),
                     type: 'error',
                 })
@@ -100,7 +100,7 @@ export default class Authentication {
 
         }).catch((err) => {
             this._application.log('authenticationV2', '[startSilentFlow()] Failed to retrieve streaming tokens:', err)
-            dialog.showMessageBox({
+            void dialog.showMessageBox({
                 message: "Failed to retrieve streaming tokens. Please sign in again.",
                 type: 'error',
             })
@@ -152,7 +152,7 @@ export default class Authentication {
         const url = verificationUri + '?otc=' + encodeURIComponent(userCode)
 
         clipboard.writeText(userCode)
-        shell.openExternal(url)
+        this.openExternal(url)
 
         this._deviceCodeDialog = new AbortController()
         this.showDeviceCodeDialog(url, verificationUri, userCode)
@@ -173,12 +173,20 @@ export default class Authentication {
                 return
 
             if(response === 1){
-                shell.openExternal(url)
+                this.openExternal(url)
             } else {
                 clipboard.writeText(userCode)
             }
             // Keep the code visible until the user dismisses it
             this.showDeviceCodeDialog(url, verificationUri, userCode)
+        }).catch((error) => {
+            this._application.log('authenticationV2', '[showDeviceCodeDialog()] Failed to show device code dialog:', error)
+        })
+    }
+
+    openExternal(url:string){
+        shell.openExternal(url).catch((error) => {
+            this._application.log('authenticationV2', '[openExternal()] Failed to open browser:', error)
         })
     }
 
@@ -266,7 +274,9 @@ export default class Authentication {
             title: this.t('auth.windowTitle'),
         })
 
-        authWindow.loadURL(url)
+        authWindow.loadURL(url).catch((error) => {
+            this._application.log('authenticationV2', '[openAuthWindow()] Failed to load auth url:', error)
+        })
         this._authWindow = authWindow
 
         this._authWindow.on('close', () => {
