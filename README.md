@@ -23,6 +23,27 @@ _DISCLAIMER: Greenlight is not affiliated with Microsoft, Xbox or Moonlight. All
 
 <img src="images/main.png" width="400" /> <img src="images/stream.png" width="400" />
 
+## Code quality (SonarCloud)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=mcheremnov_greenlight)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=bugs)](https://sonarcloud.io/summary/new_code?id=mcheremnov_greenlight)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=mcheremnov_greenlight)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=mcheremnov_greenlight)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=mcheremnov_greenlight)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=mcheremnov_greenlight&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=mcheremnov_greenlight)
+
+Snapshot from the analysis on 2026-11-03 ([full report](https://sonarcloud.io/project/overview?id=mcheremnov_greenlight)):
+
+| Metric | Value | Rating |
+|---|---|---|
+| Quality gate | Passed | |
+| Bugs | 33 | E (reliability) |
+| Vulnerabilities | 24 | C (security) |
+| Security hotspots | 0 | |
+| Code smells | 42 | A (maintainability) |
+| Duplications | 4.8% | |
+| Lines of code | 13,112 | |
+
 ## Fork progress
 
 - [x] Sign in through the default browser with a prefilled code
