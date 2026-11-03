@@ -145,6 +145,8 @@ function Stream() {
                         if(keepaliveInterval){
                             clearInterval(keepaliveInterval)
                         }
+                        // End the session on the server too, otherwise the next play request reuses it and stays in Provisioning
+                        onDisconnect()
                         window.history.back()
                     }
                 }
